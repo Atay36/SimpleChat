@@ -28,7 +28,7 @@ class ChatThread extends Thread{
 	private boolean initFlag = false;
 	public ChatThread(Socket sock, HashMap hm){
 		this.sock = sock;
-		this.hm = hm;
+		this.hm = hm; // 뒤에있는 hm은 실체가 있는게 아니라 메인에있는 걸 레퍼런스만 가져온거
 		try{
 			PrintWriter pw = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()));
 			br = new BufferedReader(new InputStreamReader(sock.getInputStream()));
