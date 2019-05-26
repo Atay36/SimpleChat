@@ -23,7 +23,18 @@ public class ChatClient {
 			InputThread it = new InputThread(sock, br);
 			it.start();
 			String line = null;
+			String[] badwords = {"fuck", "sibal", "shit", "bitch", "dick"}; // list of badwords
 			while((line = keyboard.readLine()) != null){
+				Boolean Y = false;
+
+				for(String test : badwords){
+					if(line.contains(test)){
+						System.out.println("You use bad word! Don't Do That");
+						Y = true;
+						break;
+					}
+				}
+				if(Y) continue;
 				pw.println(line);
 				pw.flush();
 				if(line.equals("/quit")){
@@ -78,3 +89,4 @@ class InputThread extends Thread{
 		}
 	} // InputThread
 }
+

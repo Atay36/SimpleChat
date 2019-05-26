@@ -51,7 +51,9 @@ class ChatThread extends Thread{
 					break;
 				if(line.indexOf("/to ") == 0){
 					sendmsg(line);
-				}else
+				}else if(line.equals("/userlist"))
+					send_userlist(hm.keySet());
+				else
 					broadcast(id + " : " + line);
 			}
 		}catch(Exception ex){
@@ -87,9 +89,37 @@ class ChatThread extends Thread{
 			Iterator iter = collection.iterator();
 			while(iter.hasNext()){
 				PrintWriter pw = (PrintWriter)iter.next();
-				pw.println(msg);
-				pw.flush();
+				if(pw != (PrintWriter)hm.get(id)){
+					pw.println(msg);
+					pw.flush();
+				}
+				
 			}
 		}
 	} // broadcast
+	public void send_userlist(Set msg){
+		synchronized(hm){
+			Collection collection = hm.keySet();
+			Iterator iter = collection.iterator();
+			// for( Set start : msg){
+			// 	PrintWriter pw = (PrintWriter)iter.next();
+			// 	pw.println(msg);
+			// 	pw.flush();
+			// }
+			PrintWriter pw = (PrintWriter)hm.get(id);
+			PrintWriter pw1 = (PrintWriter)hm.get(id);
+
+
+			while(iter.hasNext()){
+
+				pw.println((String)iter.next());
+				pw.flush();
+
+			}
+
+			pw1.println(hm.size() + "users here.");
+			pw1.flush();
+		}
+	} // send_userlist
 }
+
