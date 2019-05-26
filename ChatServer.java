@@ -51,8 +51,8 @@ class ChatThread extends Thread{
 					break;
 				if(line.indexOf("/to ") == 0){
 					sendmsg(line);
-				}else if(line.equals("/userlist"))
-					send_userlist(hm.keySet());
+				}else if(line.equals("/userlist")) // "/userlist" 입력시 
+					send_userlist(hm.keySet()); //send_userlist메소드 호출
 				else
 					broadcast(id + " : " + line);
 			}
@@ -89,7 +89,7 @@ class ChatThread extends Thread{
 			Iterator iter = collection.iterator();
 			while(iter.hasNext()){
 				PrintWriter pw = (PrintWriter)iter.next();
-				if(pw != (PrintWriter)hm.get(id)){
+				if(pw != (PrintWriter)hm.get(id)){ // 메세지를 서버로 보낸 사람의 아이디와 서버에서 보낼 유저의 아이디가 같을경우 보내지 않음
 					pw.println(msg);
 					pw.flush();
 				}
@@ -101,23 +101,18 @@ class ChatThread extends Thread{
 		synchronized(hm){
 			Collection collection = hm.keySet();
 			Iterator iter = collection.iterator();
-			// for( Set start : msg){
-			// 	PrintWriter pw = (PrintWriter)iter.next();
-			// 	pw.println(msg);
-			// 	pw.flush();
-			// }
-			PrintWriter pw = (PrintWriter)hm.get(id);
-			PrintWriter pw1 = (PrintWriter)hm.get(id);
+			
+			PrintWriter pw = (PrintWriter)hm.get(id); //userlist를 요청한 id의 pw를 넣어둠
+			PrintWriter pw1 = (PrintWriter)hm.get(id); //userlist를 요청한 id의 pw를 넣어둠
 
-
-			while(iter.hasNext()){
+			while(iter.hasNext()){ // 모든유저의 아이디를 보내줌
 
 				pw.println((String)iter.next());
 				pw.flush();
 
 			}
 
-			pw1.println(hm.size() + "users here.");
+			pw1.println(hm.size() + "users here."); // 몇명이 잇는지 보내줌
 			pw1.flush();
 		}
 	} // send_userlist

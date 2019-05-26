@@ -25,16 +25,16 @@ public class ChatClient {
 			String line = null;
 			String[] badwords = {"fuck", "sibal", "shit", "bitch", "dick"}; // list of badwords
 			while((line = keyboard.readLine()) != null){
-				Boolean Y = false;
+				Boolean Y = false; // badword의 유무확인
 
-				for(String test : badwords){
-					if(line.contains(test)){
-						System.out.println("You use bad word! Don't Do That");
-						Y = true;
+				for(String test : badwords){ // badword를 하나씩확인
+					if(line.contains(test)){ // 입력받은 메시지에 badword가 포함되어있으면 
+						System.out.println("You use bad word! Don't Do That"); //경고메세지 출력하고
+						Y = true; // badword의 유무를 true로 바꿈
 						break;
 					}
 				}
-				if(Y) continue;
+				if(Y) continue; // badword가 있을 경우 서버로 보내지 않음.
 				pw.println(line);
 				pw.flush();
 				if(line.equals("/quit")){
