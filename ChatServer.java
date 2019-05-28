@@ -108,7 +108,7 @@ class ChatThread extends Thread{
 			while(iter.hasNext()){ // 모든유저의 아이디를 보내줌
 
 				pw.println((String)iter.next());
-				pw.flush();
+				pw.flush(); // 반복문밖에서 한번만 해도 됨!
 
 			}
 

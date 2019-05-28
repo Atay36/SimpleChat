@@ -29,7 +29,7 @@ public class ChatClient {
 
 				for(String test : badwords){ // badword를 하나씩확인
 					if(line.contains(test)){ // 입력받은 메시지에 badword가 포함되어있으면 
-						System.out.println("You use bad word! Don't Do That"); //경고메세지 출력하고
+						System.out.println("You use bad word! Don't use " + test); //경고메세지 출력하고
 						Y = true; // badword의 유무를 true로 바꿈
 						break;
 					}
