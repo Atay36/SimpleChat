@@ -97,7 +97,7 @@ class ChatThread extends Thread{
 			}
 		}
 	} // broadcast
-	public void send_userlist(Set msg){
+	public void send_userlist(Set msg){ // 여기 파라미터 필요없당!! 지워도된당!
 		synchronized(hm){
 			Collection collection = hm.keySet();
 			Iterator iter = collection.iterator();
