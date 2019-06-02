@@ -1,5 +1,8 @@
 import java.net.*;
 import java.io.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class ChatClient {
 
@@ -23,8 +26,9 @@ public class ChatClient {
 			InputThread it = new InputThread(sock, br);
 			it.start();
 			String line = null;
-			String[] badwords = {"fuck", "sibal", "shit", "bitch", "dick"}; // list of badwords
+			//String[] badwords = {"fuck", "sibal", "shit", "bitch", "dick"}; // list of badwords
 			while((line = keyboard.readLine()) != null){
+				/*
 				Boolean Y = false; // badword의 유무확인
 
 				for(String test : badwords){ // badword를 하나씩확인
@@ -35,6 +39,7 @@ public class ChatClient {
 					}
 				}
 				if(Y) continue; // badword가 있을 경우 서버로 보내지 않음.
+				*/
 				pw.println(line);
 				pw.flush();
 				if(line.equals("/quit")){
@@ -42,7 +47,10 @@ public class ChatClient {
 					break;
 				}
 			}
-			System.out.println("Connection closed.");
+			long time = System.currentTimeMillis(); 
+			SimpleDateFormat format1 = new SimpleDateFormat ("HH:mm:ss");
+			String date = format1.format (System.currentTimeMillis());
+			System.out.println("["+date+"] "+ "Connection closed.");
 		}catch(Exception ex){
 			if(!endflag)
 				System.out.println(ex);
