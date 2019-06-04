@@ -198,7 +198,7 @@ class ChatThread extends Thread{
 			PrintWriter pw = (PrintWriter)hm.get(id); //userlist를 요청한 id의 pw를 넣어둠
 			PrintWriter pw1 = (PrintWriter)hm.get(id); //userlist를 요청한 id의 pw를 넣어둠
 
-			pw0.println(time+"------userlist-------"); // 몇명이 잇는지 보내줌
+			pw0.println(time+"------userlist-------"); // 몇명이 있는지 보내줌
 			pw0.flush();
 
 			while(iter.hasNext()){ // 모든유저의 아이디를 보내줌
